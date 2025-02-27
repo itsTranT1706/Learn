@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản đồ OpenStreetMap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Bản đồ OpenStreetMap</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Khởi tạo bản đồ
+        var map = L.map('map').setView([10.7769, 106.7009], 13); // Tọa độ Sài Gòn
+
+        // Thêm tile từ OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Thêm marker
+        L.marker([10.7769, 106.7009]).addTo(map)
+            .bindPopup('Đây là Sài Gòn!')
+            .openPopup();
+    </script>
+    
+    <input type="text" id="search" placeholder="Nhập địa điểm...">
+    <button onclick="searchLocation()">Tìm kiếm</button>
+    
+    <script>
+        async function searchLocation() {
+            const query = document.getElementById("search").value;
+            const response = await fetch(`/search?query=${query}`);
+            const data = await response.json();
+    
+            if (data.length > 0) {
+                const { lat, lon, display_name } = data[0];
+                map.setView([lat, lon], 13);
+                L.marker([lat, lon]).addTo(map)
+                    .bindPopup(display_name)
+                    .openPopup();
+            } else {
+                alert("Không tìm thấy địa điểm!");
+            }
+        }
+    </script>
+    
+</body>
+</html>
