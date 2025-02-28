@@ -8,9 +8,15 @@ const port = 8080;
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/getLocation", (req, res)=>{
+    // res.send(``)
+
+})
+
 app.get("/search", async (req, res) => {
     try {
         const { query } = req.query;
+        console.log(req);
         const response = await axios.get(`https://nominatim.openstreetmap.org/search`, {
             params: {
                 q: query,

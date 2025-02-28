@@ -9,12 +9,13 @@
 </head>
 <body>
     <h1>Bản đồ OpenStreetMap</h1>
+    <h2 id = "demo"></h2>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Khởi tạo bản đồ
-        var map = L.map('map').setView([10.7769, 106.7009], 13); // Tọa độ Sài Gòn
+        var map = L.map('map').setView([21.0075648, 105.7783808], 13); // Tọa độ Sài Gòn
 
         // Thêm tile từ OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -22,15 +23,32 @@
         }).addTo(map);
 
         // Thêm marker
-        L.marker([10.7769, 106.7009]).addTo(map)
-            .bindPopup('Đây là Sài Gòn!')
+        L.marker([21.0075648, 105.7783808]).addTo(map)
+            .bindPopup('your location!')
             .openPopup();
     </script>
-    
+    <button onclick="getLocation()">get my location</button>
     <input type="text" id="search" placeholder="Nhập địa điểm...">
     <button onclick="searchLocation()">Tìm kiếm</button>
+
     
     <script>
+        const x = document.getElementById("demo");
+         function getLocation() {
+            // const response = await fetch(`/getLocation`);
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+
+            }else {
+                alert("Geolocation is not supported by this browser");
+            }
+        }
+        
+        function showPosition(position) {
+               x.innerHTML =  "Latitude: "+position.coords.latitude+ "      Longtitude: "+position.coords.longitude;
+        }
+
+
         async function searchLocation() {
             const query = document.getElementById("search").value;
             const response = await fetch(`/search?query=${query}`);
