@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+
+
+}
+
+body {
+    background:  #0F2027;
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    color: white;
+    text-align: center;
+
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding:15px ;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: 20px;
+}
+
+nav ul li {
+    margin: 0px 15px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li:hover {
+    color: #1abc9c;
+
+}
+
+.hero{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center ;
+    padding: 50px;
+
+}
+
+.hero  img{
+    width: 150px;
+    border-radius: 50%;
+    border: 3px solid #1abc9c;
+    margin-bottom: 20px;
+
+}
+
+.hero h1{
+    font-size: 36px;
+
+}
+
+.hero p{
+    font-size: 20px;
+    opacity: 0.8    ;
+}
+
+.btn {
+    margin-top: 20px;
+    background: #149178 ;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color:white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+
+}
+.btn:hover{
+    background: #16a085;
+}
+
+.section{
+    padding: 80px 20px;
+    /* text-align: center; */
+
+}
+
+.skill {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.skill div {
+    background:  #ffffff10;
+    padding: 20px;
+    border-radius: 10px;
+    width: 150px;
+}
+
+.project{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 50px;
+
+}
+
+.project-item {
+    background: #ffffff10;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+
+}
+/* 
+.project-item  {
+    transition: transform 0.3s;
+} */
+.project-item :hover{
+    transform: scale(1.05);
+}
+
+.contact {
+    background: #1abc9c;
+    padding: 50px;
+
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    color: white;
+}
+
+.fade-in{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s, transform 1s;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0) ;
+
+}
+
